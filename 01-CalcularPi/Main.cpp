@@ -2,27 +2,25 @@
 #include <iomanip>
 using namespace std;
 
-#define ITEMAX 867000 //Numero de interaciones
-
 int main() {
     double p = 0.0; // Valor de pi
     double d = 1.0; // Denominador
     double e= 1e-6;  // Decimales
     int s = 1; // Signo
-    int i = 0;
+    int i = 0; //Interaciones
+
     //Realizamos el teorema
-    for(i ; i<ITEMAX ; i++){
-        p += s * (1/d);
+    while (p !=0.785399) {
+        p += s/d;
+        d += 2.0;
         s *= -1;
-        d += 2;
-
-        // igualamos el valor de pi en sus 6 primeros decimales
-        if ((p*e)== 3141592){
+        i++;
+        //Cuando el valor absoluto sea mayor a e, se ejecutara el if
+        if (p - 0.785398 < e && p - 0.785398 > -e) {
+            p+= e;
             break;
-        }
-    }
-    //cout << "El valor de iteraciones es: " << i <<endl;
-    cout <<setprecision(6)<< fixed << "El valor de pi calculado es: " << p*4 <<endl;
-
+        }}
+    cout << "La cantidad de iteraciones es: " << i <<endl;
+    cout <<setprecision(6)<< fixed << "El valor de pi calculado es: " << p*4<<endl;
     return 0;
 }
